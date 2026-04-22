@@ -1,92 +1,98 @@
-🚀 Agile Workflow v1.3 | Pablo Silva
+# 🚀 Agile Workflow v1.3 | Pablo Silva
+
 Este documento define o fluxo de trabalho para automação, desenvolvimento de sistemas e manutenção de infraestrutura, otimizado para Windows 10/11.
 
-🛠️ Variáveis de Ambiente & Configurações
-Bash Path: export CLAUDE_CODE_GIT_BASH_PATH="C:\Users\pablo.oliveira\AppData\Local\Programs\Git\usr\bin\bash.exe"
+---
 
-Idioma: Português (PT-BR)
+## 🛠️ Variáveis de Ambiente & Configurações
 
-Log Logic: Prioridade Total ao Banco de Dados. O log local é secundário para garantir 100% de confiabilidade no status dos processos.
+**Bash Path:** `export CLAUDE_CODE_GIT_BASH_PATH="C:\Users\pablo.oliveira\AppData\Local\Programs\Git\usr\bin\bash.exe"`
 
-🏗️ Passo 0: Preparar Ferramentas (One-Time)
+**Idioma:** Português (PT-BR)
+
+**Log Logic:** Prioridade Total ao Banco de Dados. O log local é secundário para garantir 100% de confiabilidade no status dos processos.
+
+---
+
+## 🏗️ Passo 0: Preparar Ferramentas (One-Time)
+
 Executado apenas uma vez ao iniciar o projeto.
 
-[ ] Ambiente de IA:
+### ✅ Ambiente de IA
 
-Instalar antigravity-toolkit.
+- [ ] Instalar antigravity-toolkit
+- [ ] Instalar openclaude e opencode (fallback para limites)
+- [ ] Instalar plugin Figma no OpenClaude (Tutorial)
 
-Instalar openclaude e opencode (fallback para limites).
+### ✅ Skill Caveman (Essencial)
 
-Instalar plugin Figma no OpenClaude. (Tutorial).
+- [ ] `claude plugin marketplace add JuliusBrussee/caveman`
+- [ ] `claude plugin install caveman@caveman`
 
-[ ] Skill Caveman (Essencial):
+### ✅ Padronização
 
-claude plugin marketplace add JuliusBrussee/caveman
+- [ ] Definir regras de Conventional Commits
+- [ ] Instalar standard-version para versionamento semântico
+- [ ] Criar skill de IA focada em gerar mensagens de commit padronizadas
 
-claude plugin install caveman@caveman
+---
 
-[ ] Padronização:
+## 📋 Passo 1: Planejamento
 
-Definir regras de Conventional Commits.
-
-Instalar standard-version para versionamento semântico.
-
-Criar skill de IA focada em gerar mensagens de commit padronizadas.
-
-📋 Passo 1: Planejamento
 Definição de documentos e tecnologias.
 
-1.1 Arquivos Estruturais (.md)
-[ ] Documentação: Criar PRD e Spec usando a skill Spec_generator.
+### 1.1 Arquivos Estruturais (.md)
 
-[ ] Arquivos de Projeto IA: Gerar agent.md, vision.md, manifesto.md e esquema do BD.
+- [ ] **Documentação:** Criar PRD e Spec usando a skill Spec_generator
+- [ ] **Arquivos de Projeto IA:** Gerar agent.md, vision.md, manifesto.md e esquema do BD
 
-1.2 Stack & Arquitetura
-[ ] Viabilidade: Avaliar se a aplicação pode ser Web (Node, Next, Astro) ou se permanece via automação local (Python).
+### 1.2 Stack & Arquitetura
 
-[ ] Deploy: Definir destino (Vercel, Cloudflare ou servidor local).
+- [ ] **Viabilidade:** Avaliar se a aplicação pode ser Web (Node, Next, Astro) ou se permanece via automação local (Python)
+- [ ] **Deploy:** Definir destino (Vercel, Cloudflare ou servidor local)
+- [ ] **Versionamento:** Implementar Semantic Versioning
 
-[ ] Versionamento: Implementar Semantic Versioning.
+---
 
-💻 Passo 2: Implementação
+## 💻 Passo 2: Implementação
+
 Desenvolvimento ativo seguindo as especificações.
 
-[ ] Codificação baseada nas Tech Specs.
+- [ ] Codificação baseada nas Tech Specs
+- [ ] Manter sincronia entre scripts e banco de dados (evitar logs órfãos)
 
-[ ] Manter sincronia entre scripts e banco de dados (evitar logs órfãos).
+---
 
-🚀 Passo Final: Deployment & QA
+## 🚀 Passo Final: Deployment & QA
+
 Garantia de entrega e congelamento de estado funcional.
 
-Snapshots: Realizar commits para congelar o estado funcional.
+### 📸 Snapshots
+- [ ] Realizar commits para congelar o estado funcional
 
-Plano de Teste: Executar antes do Code Review (garantir o que já funciona).
+### 📝 Plano de Teste
+- [ ] Executar antes do Code Review (garantir o que já funciona)
 
-Documentação:
+### 📚 Documentação
+- [ ] Criar/Usar skill para atualização automática de docs
+- [ ] Atualizar Changelogs via standard-version
 
-[ ] Criar/Usar skill para atualização automática de docs.
+### ⚡ Qualidade
+- [ ] **Code Review:** Antes do merge (foco em segurança e performance)
+- [ ] **Teste Pós-Review:** Validar correções
+- [ ] **Commits Pós-Review**
 
-[ ] Atualizar Changelogs via standard-version.
+### 🔀 Fluxo de Branch
+`main → branch(feature) & branch → main`
 
-Qualidade:
+---
 
-[ ] Code Review: Antes do merge (foco em segurança e performance).
+## 🔍 Melhoria & Visão Holística
 
-[ ] Teste Pós-Review: Validar correções.
-
-[ ] Commits Pós-Review.
-
-Fluxo de Branch: main -> branch(feature) & branch -> main.
-
-🔍 Melhoria & Visão Holística
 Revisão cirúrgica e especialista (não faz parte da produção diária).
 
-[ ] Testes: Revisar cobertura total (Unitários/Integração). Usar skill antigravity.
-
-[ ] Performance: Análise de notação Big-O e remoção de Over-Engineering.
-
-[ ] Segurança: Revisar credenciais de banco e permissões de acesso.
-
-[ ] Experiência (UX): Revisar a fluidez do software e outputs de log.
-
-[ ] Estética: Refinar interface e organização do código.
+- [ ] **Testes:** Revisar cobertura total (Unitários/Integração). Usar skill antigravity
+- [ ] **Performance:** Análise de notação Big-O e remoção de Over-Engineering
+- [ ] **Segurança:** Revisar credenciais de banco e permissões de acesso
+- [ ] **Experiência (UX):** Revisar a fluidez do software e outputs de log
+- [ ] **Estética:** Refinar interface e organização do código

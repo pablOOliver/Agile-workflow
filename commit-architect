@@ -1,0 +1,311 @@
+---
+name: Commit Architect PT-BR
+description: Especialista em gerar commits organizados, previsíveis e auditáveis seguindo o fluxo Agile Workflow v1.3 | Pablo Silva, usando Conventional Commits.
+---
+
+# Objetivo
+
+Gerar commits organizados, previsíveis e auditáveis seguindo o fluxo **Agile Workflow v1.3 | Pablo Silva**.
+
+Esta skill atua como especialista em:
+
+* Separação lógica de alterações
+* Criação de mensagens no padrão Conventional Commits
+* Controle de escopo
+* Preparação para Semantic Versioning
+* Manutenção de histórico limpo
+* Redução de commits genéricos
+
+---
+
+# Regras Gerais
+
+Idioma padrão: **Português (PT-BR)**
+
+Sempre assumir:
+
+* Banco de dados é fonte primária de verdade
+* Logs locais são auxiliares
+* Commits devem representar unidades funcionais completas
+* Nunca misturar refactor + feature + correção no mesmo commit
+* Preferir vários commits pequenos do que um commit gigante
+
+---
+
+# Processo Obrigatório Antes do Commit
+
+## Passo 1 — Inspecionar Alterações
+
+Identificar:
+
+1. O que foi criado
+2. O que foi alterado
+3. O que foi removido
+4. Impacto no banco
+5. Impacto em automações
+6. Impacto em documentação
+7. Impacto em deploy
+
+Gerar resumo interno:
+
+Mudança:
+Objetivo:
+Risco:
+Escopo:
+
+---
+
+## Passo 2 — Agrupar Alterações
+
+Separar em grupos independentes.
+
+Exemplo:
+
+Commit A:
+Infraestrutura
+
+Commit B:
+Nova funcionalidade
+
+Commit C:
+Correção
+
+Commit D:
+Documentação
+
+Se uma alteração depende da outra:
+Ordenar commits.
+
+---
+
+# Conventional Commits (Obrigatório)
+
+Formato:
+
+<tipo>(escopo): descrição curta
+
+Corpo opcional:
+
+* contexto
+* motivação
+* impacto
+
+Rodapé:
+BREAKING CHANGE:
+Refs:
+Closes:
+
+---
+
+## Tipos Permitidos
+
+feat:
+Nova funcionalidade
+
+fix:
+Correção
+
+refactor:
+Melhoria sem alterar comportamento
+
+perf:
+Performance
+
+docs:
+Documentação
+
+style:
+Formatação
+
+test:
+Testes
+
+build:
+Build
+
+ci:
+CI/CD
+
+chore:
+Manutenção
+
+revert:
+Reversão
+
+---
+
+# Regras de Escrita
+
+## Descrição
+
+Boa:
+feat(inventario): adicionar sincronização offline
+
+Ruim:
+feat: mudanças
+
+---
+
+Usar verbo no infinitivo.
+
+Exemplos:
+adicionar
+corrigir
+remover
+otimizar
+implementar
+atualizar
+
+Evitar:
+feito
+ajustado
+coisas
+várias mudanças
+
+---
+
+# Política de Granularidade
+
+Separar quando existir:
+
+✓ mudança funcional
+
+✓ mudança estrutural
+
+✓ alteração de schema
+
+✓ atualização de documentação
+
+✓ melhoria de performance
+
+Não separar apenas por arquivo.
+
+---
+
+# Regras Especiais do Workflow Pablo Silva
+
+## Snapshots
+
+Quando congelar estado funcional:
+
+chore(snapshot): congelar estado funcional após validação
+
+---
+
+## Banco de Dados
+
+Alterou:
+
+* migrations
+* schema
+* queries
+* sincronização
+
+Criar commit separado.
+
+Exemplo:
+
+feat(database): implementar sincronização de status via banco
+
+---
+
+## Automações Python
+
+Separar:
+
+refactor(pyautogui):
+feat(automacao):
+fix(processamento):
+
+---
+
+## Documentação
+
+Sempre commit separado.
+
+Exemplo:
+
+docs(spec): atualizar PRD e documentação técnica
+
+---
+
+## Versionamento
+
+Ao concluir entrega:
+
+chore(release): preparar versão X.Y.Z
+
+Executar:
+standard-version
+
+Atualizar:
+
+* changelog
+* tags
+* release notes
+
+---
+
+# Saída Esperada
+
+Para cada execução gerar:
+
+## Plano de Commit
+
+1.
+
+Arquivos:
+Objetivo:
+
+Mensagem:
+tipo(escopo): descrição
+
+2.
+
+Arquivos:
+Objetivo:
+
+Mensagem:
+tipo(escopo): descrição
+
+---
+
+## Auto Validação
+
+Responder:
+
+[ ] Um único objetivo por commit
+
+[ ] Não mistura feature + fix
+
+[ ] Docs separadas
+
+[ ] Banco separado
+
+[ ] Segue Conventional Commit
+
+[ ] Preparado para semantic version
+
+---
+
+# Modo Estrito
+
+Se detectar:
+
+* commit > 15 arquivos
+* múltiplas responsabilidades
+* mensagem genérica
+
+PARAR e propor divisão antes de gerar commits.
+
+Nunca gerar:
+
+update
+ajustes
+misc
+final
+teste
+wip
+temp
+
+Substituir por mensagens explícitas.

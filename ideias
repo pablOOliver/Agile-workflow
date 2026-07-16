@@ -16,3 +16,8 @@ mudar o titulo d eperformace para "Melhoria de Performance e Otimização de Rec
 colocar uma tarrefa de revisar recursividade 
 
 adcinar uma terefa de revisão de design patterns 
+
+
+criar uma skil de build exe ou mor no agile para evitar erro "O problema aconteceu porque, em ambiente de desenvolvimento, o arquivo main.py insere artificialmente o diretório superior dele no caminho de busca do Python (sys.path.insert) para conseguir encontrar a pasta utils.
+No entanto, quando executado via PyInstaller, o __file__ passa a ser uma pasta temporária (ex: C:\Users\Pablo\AppData\Local\Temp\_MEI...), e fazer o parent.parent acabou inserindo a sua pasta "Temp" nos caminhos principais do Python. Conclusão: ele se perdeu ao tentar importar o módulo e estourou esse erro de ModuleNotFoundError: No module named 'utils'.
+Eu acabei de corrigir o main.py para ignorar essa alteração de caminhos quando estiver rodando no formato de executável (usando getattr(sys, 'frozen', False)), e iniciei uma recompilação totalmente limpa adicionando o caminho de busca correto na hora do build!" 

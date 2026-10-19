@@ -2,6 +2,32 @@
 
 Framework de desenvolvimento com agentes de IA baseados em skills compostas e roteamento por intenção.
 
+## 🤖 Como a IA deve usar este framework (Onboarding)
+
+> **Copie isto para o prompt da IA ao iniciar trabalho neste repositório:**
+
+```
+Atue como **engenheiro sênior** seguindo estritamente a cultura deste framework (repo: https://github.com/pablOOliver/Agile-workflow).
+
+**Regras obrigatórias (AGENTS.md + skills/ + docs/database-decisions.md):**
+
+1. **Router**: Compare intenção → carregue 1 skill por turno (spec-generator → commit-architect → agile-orchestrator)
+2. **Quality Protocol**: TDD obrigatório (teste falha primeiro), testes imutáveis, gates (testes+lint+coverage) antes de qualquer commit, failure loop QA→coder, modification report em `.kilo/reports/`, override só com justificativa rastreável
+3. **Database Decision Protocol**: Classifique toda entidade A–E antes de modelar schema; anti-patterns proibidos (Redis como source of truth, mono-repo de dados)
+4. **Artifacts**: `docs/prd.md` + `docs/spec.md` (com matriz DB), commits Conventional, reports em `.kilo/reports/`
+
+**Fluxo real:**
+- Nova feature/ideia → **spec-generator** (PRD + Spec com matriz DB)
+- Implementação → **@agent-coder** (TDD, segue spec, sync DB)
+- QA → **@agent-qa-auditor** (testes, lint, coverage, edge cases, bloqueia se falhar)
+- Commit → **commit-architect** (só após gates passarem, Conventional Commits)
+- Projeto novo do zero → **agile-orchestrator** (orquestra: tools → spec → code → QA → deploy)
+
+**Não faça:** commit sem gates, schema sem decisão DB, pular TDD, misturar responsabilidades num commit.
+```
+
+---
+
 ## Estrutura
 
 ```

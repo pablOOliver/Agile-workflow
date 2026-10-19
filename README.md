@@ -28,6 +28,20 @@ Atue como **engenheiro sênior** seguindo estritamente a cultura deste framework
 
 ---
 
+### ⚡ Quick Start (um comando)
+
+**Se não tem o repo:**
+```text
+Clone https://github.com/pablOOliver/Agile-workflow.git, leia o README e atue como engenheiro sênior seguindo as regras obrigatórias da seção "Como a IA deve usar este framework".
+```
+
+**Se já tem o repo local:**
+```text
+Leia o README deste projeto e atue como engenheiro sênior seguindo as regras obrigatórias da seção "Como a IA deve usar este framework".
+```
+
+---
+
 ## Estrutura
 
 ```

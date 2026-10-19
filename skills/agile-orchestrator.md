@@ -16,6 +16,7 @@ description: Meta-skill que orquestra o fluxo completo de desenvolvimento: plane
 ## Pré-condições
 - Nenhuma (é o ponto de entrada do framework)
 - **Quality Protocol (AGENTS.md):** Fluxo architect → coder → qa-auditor com quality gates e failure loop
+- **Database Decision Protocol (docs/database-decisions.md):** Decisão de storage por tipo de dado validada no Passo 1
 
 ## Instruções
 Orquestre o fluxo conforme Quality Protocol (AGENTS.md):
@@ -34,6 +35,7 @@ Orquestre o fluxo conforme Quality Protocol (AGENTS.md):
 
 ### Passo 1: Planejamento (@agent-architect → spec-generator)
 - **spec-generator**: Criar PRD (docs/prd.md) e Spec (docs/spec.md) com critérios testáveis
+- **Database Decision Gate (obrigatório)**: Validar matriz de storage por entidade (docs/database-decisions.md) — cada entidade classificada A–E, tecnologia escolhida, justificativa registrada
 - Gerar agent.md, vision.md, manifesto.md, esquema do BD
 - Definir stack (Web vs automação local), deploy target, versionamento
 

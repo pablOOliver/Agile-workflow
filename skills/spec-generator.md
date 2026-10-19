@@ -18,6 +18,7 @@ description: Use quando o usuário precisa transformar uma ideia vaga em PRD ou 
 - Ideia ou requisito de alto nível fornecido pelo usuário
 - Contexto do projeto (stack, arquitetura existente) se disponível
 - **Quality Protocol (AGENTS.md):** Testes e critérios de aceite verificáveis definidos antes da implementação (TDD obrigatório)
+- **Database Decision Protocol (docs/database-decisions.md):** Decisão de storage por tipo de dado (A–E) definida e justificada antes de modelar schema
 
 ## Instruções
 Atue como Product Manager e Tech Lead Sênior. Gere dois documentos:
@@ -33,7 +34,8 @@ Atue como Product Manager e Tech Lead Sênior. Gere dois documentos:
 ### 2. SPEC (docs/spec.md)
 - **Arquitetura**: Estrutura de pastas, padrões de design (Clean Architecture, MVC)
 - **Stack Tecnológica**: Linguagens, frameworks, bibliotecas específicas
-- **Data Schema**: Modelagem de dados (tabelas, campos, tipos)
+- **Database Decisions**: Matriz de storage por entidade (conforme docs/database-decisions.md) — tabela com: Entidade, Tipo (A–E), Tecnologia, Justificativa, TTL/Expiração, Idempotência
+- **Data Schema**: Modelagem de dados (tabelas, campos, tipos) — alinhada às decisões acima
 - **Endpoints/API**: Rotas, inputs e outputs esperados
 - **Fluxo de Dados**: Como a informação viaja do frontend para o banco
 - **Segurança e Performance**: Autenticação, rate limits, otimizações
@@ -42,6 +44,7 @@ Itere: peça PRD primeiro, revise, depois gere SPEC baseada no PRD aprovado.
 Peça estrutura de pastas atual se repositório existir.
 Ofereça diagramas Mermaid para fluxo de dados.
 **Referência:** Quality Protocol em AGENTS.md (TDD, testabilidade, gates de qualidade)
+**Referência:** Database Decision Protocol em docs/database-decisions.md (matriz A–E, anti-patterns, checklist)
 
 ## Formato de saída
 - `docs/prd.md` (markdown)

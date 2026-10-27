@@ -1,0 +1,76 @@
+# OpenHands Configuration for AI Dev Framework
+# Harness Engineering — Agentes com validação determinística
+
+sandbox:
+  working_dir: "/workspace"
+  shell: "bash"
+  env:
+    PYTHONPATH: "/workspace"
+    PATH: "/usr/local/bin:/usr/bin:/bin"
+
+# Permissões do agente no sandbox
+permissions:
+  read: true
+  write: true
+  execute: true
+  git: true
+  network: false  # Sem rede externa por segurança
+
+# Hooks de auto-correção (feedback loop)
+hooks:
+  post_edit: ".openhands/hooks/post_edit.py"
+  pre_commit: ".openhands/hooks/pre_commit.py"
+  post_skill_load: ".openhands/hooks/post_skill_load.py"
+
+# Memória persistente entre sessões
+memory:
+  enabled: true
+  files:
+    - ".openhands/memory/context.md"
+    - ".openhands/memory/session_log.md"
+
+# Configuração do Agent Manager (se usado)
+agent_manager:
+  enabled: true
+  worktree_base: ".kilo/worktrees"
+  max_concurrent_sessions: 3
+  default_model: "claude-3-5-sonnet"
+
+# Skills disponíveis (carregamento sob demanda)
+skills:
+  auto_load:
+    - "deterministic-validator"  # Sempre ativa via hooks
+  on_demand:
+    - "spec-generator"
+    - "commit-architect"
+    - "agile-orchestrator"
+
+# Quality Gates (referência para hooks)
+quality_gates:
+  lint:
+    - "ruff check ."
+    - "markdownlint **/*.md"
+    - "shellcheck scripts/*.sh"
+  typecheck:
+    - "mypy --strict scripts/"
+  test:
+    - "pytest tests/ -v --tb=short"
+  coverage:
+    - "pytest tests/ --cov=. --cov-fail-under=80"
+  routing:
+    - "python scripts/validate_routing.py"
+
+# Artefatos esperados
+artifacts:
+  specs: "docs/spec.md"
+  prds: "docs/prd.md"
+  reports: ".kilo/reports/"
+  tests: "tests/"
+  coverage: "coverage/"
+
+# Git workflow
+git:
+  branch_strategy: "feature-branch"
+  commit_format: "conventional"
+  pre_commit_hook: true
+  require_quality_gate: true

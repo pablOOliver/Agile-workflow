@@ -13,6 +13,13 @@
 | spec-generator | Transforma ideia vaga em PRD (docs/prd.md) + Spec técnica (docs/spec.md) |
 | commit-architect | Gera commits Conventional Commits organizados a partir de alterações feitas |
 | agile-orchestrator | Orquestra fluxo completo: architect → coder → qa-auditor |
+| deterministic-validator | Validação determinística (lint, typecheck, testes, coverage) e auto-correção pós-edição |
+| race-condition-auditor | Detecta e corrige condições de corrida em operações ler-decisão-grava no banco |
+| idempotency-auditor | Garante que webhooks e endpoints de pagamento aceitem repetição sem efeito duplicado |
+| client-trust-auditor | Auditoria de segurança: nunca confia no cliente, move regras para servidor, valida RLS |
+| separation-of-concerns-refactorer | Refatoração segura — divide arquivo grande em camadas (UI, negócio, dados) sem mudar comportamento |
+| integration-test-generator | Gera testes de integração que batem nas rotas de verdade com banco de teste separado |
+| auditoria-combinada | Auditoria completa dos 5 fundamentos sem alterar nada; gera AUDITORIA.md na raiz |
 
 ### Router Rules
 
@@ -29,6 +36,15 @@ spec-generator → commit-architect
 - commit-architect reads spec for context, produces commit messages
 
 agile-orchestrator coordinates: @agent-architect → @agent-coder → @agent-qa-auditor
+
+### Skill Chaining Adicional (auditoria e qualidade)
+
+auditoria-combinada → [race-condition-auditor | idempotency-auditor | client-trust-auditor | separation-of-concerns-refactorer | integration-test-generator]
+- auditoria-combinada produz: AUDITORIA.md na raiz com 5 achados de maior risco e tabela por etapa
+- Cada skill de correção lê AUDITORIA.md para contexto, produz o plano de correção
+- Só altera código após OK explícito do usuário em cada etapa
+
+deterministic-validator roda automaticamente via hook OpenHands (post_edit, pre_commit, post_skill_load)
 
 ---
 
@@ -100,7 +116,13 @@ ai-dev-framework/
 │   ├── spec-generator.md
 │   ├── commit-architect.md
 │   ├── agile-orchestrator.md
-│   └── deterministic-validator.md    # ← NOVA: validação + auto-correção
+│   ├── deterministic-validator.md    # ← NOVA: validação + auto-correção
+│   ├── race-condition-auditor.md     # ← raça condição no banco
+│   ├── idempotency-auditor.md        # ← idempotência de webhooks/pagamentos
+│   ├── client-trust-auditor.md       # ← segurança: nunca confia no cliente
+│   ├── separation-of-concerns-refactorer.md  # ← refatoração em camadas
+│   ├── integration-test-generator.md # ← testes de integração
+│   └── auditoria-combinada.md        # ← auditoria dos 5 fundamentos
 ├── .kilo/
 │   ├── commands/             # Ponteiros de 3 linhas (spec, commit, agile)
 │   ├── reports/              # Modification reports + QA reports
@@ -134,6 +156,12 @@ ai-dev-framework/
 | `commit-architect` | `skills/commit-architect.md` | Código pronto → Commits Conventional | Alterações feitas, precisa commitar |
 | `agile-orchestrator` | `skills/agile-orchestrator.md` | Workflow completo ponta-a-ponta | Projeto novo do zero |
 | `deterministic-validator` | `skills/deterministic-validator.md` | **NOVA** — Validação, lint, gates, auto-correção | **SEMPRE** (hook pós-edição) |
+| `race-condition-auditor` | `skills/race-condition-auditor.md` | Detecção e correção de condições de corrida no banco | Suspeita de dados duplicados/corrompidos por concorrência |
+| `idempotency-auditor` | `skills/idempotency-auditor.md` | Idempotência de webhooks e endpoints de pagamento | Webhooks de pagamento, endpoints que cobram/creditam |
+| `client-trust-auditor` | `skills/client-trust-auditor.md` | Segurança: nunca confia no cliente, RLS, segredos do front | Auditoria de segurança completa |
+| `separation-of-concerns-refactorer` | `skills/separation-of-concerns-refactorer.md` | Refatoração segura em camadas sem mudar comportamento | Arquivo grande, medo de editar |
+| `integration-test-generator` | `skills/integration-test-generator.md` | Testes de integração em rotas reais com banco de teste | Cobrir fluxos críticos com testes |
+| `auditoria-combinada` | `skills/auditoria-combinada.md` | Auditoria dos 5 fundamentos, gera AUDITORIA.md na raiz | Antes de qualquer correção, sem alterar nada |
 
 > **Regra:** Skills são carregadas **apenas quando necessárias** via router ou `use skill X`. A `deterministic-validator` roda automaticamente via hook OpenHands.
 

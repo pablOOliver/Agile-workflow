@@ -10,6 +10,58 @@ O framework possui a base funcional (router, skills, hooks, validação determin
 
 ---
 
+## Fase 0 — Assimilação dos 5 Fundamentos de Segurança (@manodeyvin) (Semana 0, paralela à Fase 1)
+
+**Objetivo:** Implementar as 6 skills baseadas nos prompts de @manodeyvin para fechar lacunas críticas de segurança e qualidade.
+
+### 0.1 Skill race-condition-auditor (Prompt 1 — Race Condition)
+- [ ] Criar `skills/race-condition-auditor.md` ✅ FEITO
+- [ ] Executar auditoria de race conditions nos endpoints de escrita
+- [ ] Aplicar correções por ordem: unique index > operação atômica > SELECT FOR UPDATE
+- [ ] Criar testes de concorrência (2 requisições simultâneas → 1 efeito)
+- **Regra:** Não propor Redis, fila ou lock em memória se o banco resolve
+
+### 0.2 Skill idempotency-auditor (Prompt 2 — Idempotência)
+- [ ] Criar `skills/idempotency-auditor.md` ✅ FEITO
+- [ ] Mapear todos os webhooks recebidos e endpoints de pagamento
+- [ ] Criar tabela de eventos processados com ID único
+- [ ] Implementar verificação de assinatura com corpo bruto
+- [ ] Implementar idempotency key (UUID v4) para chamadas ao gateway
+- [ ] Aceitar header Idempotency-Key em endpoints de entrada
+- **Regra:** Não usar dado pessoal (e-mail, CPF) como chave de idempotência
+
+### 0.3 Skill client-trust-auditor (Prompt 3 — Nunca Confie no Cliente)
+- [ ] Criar `skills/client-trust-auditor.md` ✅ FEITO
+- [ ] Mover regras de negócio do front para o servidor (preço, desconto, permissão, plano)
+- [ ] Remover segredos do front (service_role, chaves de terceiros)
+- [ ] Auditar RLS e policies do Supabase/banco exposto
+- [ ] Gerar relatório de segurança primeiro (sem alterar nada)
+- **Regra:** Aplicar correções uma por vez, com OK do usuário em cada uma
+
+### 0.4 Skill separation-of-concerns-refactorer (Prompt 4 — Separação de Responsabilidades)
+- [ ] Criar `skills/separation-of-concerns-refactorer.md` ✅ FEITO
+- [ ] Identificar arquivos grandes para refatorar
+- [ ] Escrever testes de caracterização antes do primeiro passo
+- [ ] Dividir em 3 camadas: UI, regra de negócio, acesso a dados
+- **Regra:** Não corrigir bugs nem mudar regra de negócio durante a refatoração
+
+### 0.5 Skill integration-test-generator (Prompt 5 — Testes de Integração)
+- [ ] Criar `skills/integration-test-generator.md` ✅ FEITO
+- [ ] Listar fluxos críticos (cadastro, login, checkout, webhooks)
+- [ ] Escrever frases describe/it em português (aguardar confirmação do usuário)
+- [ ] Configurar banco de teste separado (nunca produção)
+- [ ] Mock apenas de serviços externos
+- **Regra:** Não apagar, pular ou afrouxar teste para fazê-lo passar
+
+### 0.6 Skill auditoria-combinada (Gerador AUDITORIA.md)
+- [ ] Criar `skills/auditoria-combinada.md` ✅ FEITO
+- [ ] Executar auditoria completa dos 5 fundamentos
+- [ ] Gerar `AUDITORIA.md` na raiz com 5 achados de maior risco
+- [ ] Tabela por etapa (achado, risco, arquivo:linha, correção)
+- **Regra:** Não alterar nenhum arquivo (exceto criar AUDITORIA.md)
+
+---
+
 ## Fase 1 — Fundamentos Críticos (Semana 1)
 
 **Objetivo:** Desbloquear o uso das skills e estabelecer validação mínima de segurança.
